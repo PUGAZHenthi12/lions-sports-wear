@@ -1,0 +1,54 @@
+/* WHY US */
+
+.why-us{
+padding:90px 8%;
+background:#111;
+text-align:center;
+}
+
+.why-us h2{
+font-size:42px;
+color:#FFD700;
+margin-bottom:15px;
+}
+
+.subtitle{
+color:#ddd;
+margin-bottom:60px;
+font-size:18px;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+}
+
+.feature-card{
+background:#1a1a1a;
+padding:35px;
+border-radius:18px;
+transition:.4s;
+border:1px solid rgba(255,215,0,.2);
+}
+
+.feature-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 35px rgba(255,215,0,.25);
+}
+
+.feature-card .icon{
+font-size:55px;
+margin-bottom:20px;
+}
+
+.feature-card h3{
+color:#FFD700;
+margin-bottom:15px;
+font-size:24px;
+}
+
+.feature-card p{
+color:#ddd;
+line-height:1.7;
+}
