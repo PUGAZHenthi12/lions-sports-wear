@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Lion's Sports Wear</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="admin-container">
+
+<h1>Admin Dashboard</h1>
+
+<div class="admin-form">
+
+<input
+type="text"
+id="productName"
+placeholder="Product Name">
+
+<input
+type="number"
+id="productPrice"
+placeholder="Price">
+
+<input
+type="text"
+id="productCategory"
+placeholder="Category">
+
+<input
+type="text"
+id="productImage"
+placeholder="Image URL">
+
+<button onclick="addProduct()">
+
+Add Product
+
+</button>
+
+</div>
+
+<table class="admin-table">
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Price</th>
+
+<th>Category</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="productTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>
