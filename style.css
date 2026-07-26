@@ -919,3 +919,71 @@ border-radius:15px;
 border:4px solid #FFD700;
 
 }
+
+/* ===========================
+WHATSAPP FLOAT
+=========================== */
+
+.whatsapp-float{
+
+position:fixed;
+
+bottom:95px;
+
+right:25px;
+
+width:60px;
+
+height:60px;
+
+background:#25D366;
+
+color:#fff;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:34px;
+
+box-shadow:0 8px 25px rgba(37,211,102,.45);
+
+z-index:9999;
+
+transition:.3s;
+
+animation:whatsappFloat 2s infinite;
+
+}
+
+.whatsapp-float:hover{
+
+transform:scale(1.1);
+
+}
+
+@keyframes whatsappFloat{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
