@@ -107,3 +107,21 @@ if (yearElement) {
     yearElement.innerHTML =
         `© ${new Date().getFullYear()} Lion's Sports Wear. All Rights Reserved.`;
 }
+
+// ===============================
+// Loader
+// ===============================
+
+window.addEventListener("load", () => {
+
+setTimeout(() => {
+
+const loader = document.getElementById("loader");
+
+loader.style.opacity = "0";
+
+loader.style.visibility = "hidden";
+
+},2000);
+
+});
