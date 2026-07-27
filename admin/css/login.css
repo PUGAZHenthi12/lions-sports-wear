@@ -29,9 +29,11 @@ body{
     box-shadow:0 0 30px rgba(212,175,55,.25);
 }
 
-.login-card h1{
-    font-size:55px;
-    margin-bottom:10px;
+.admin-logo{
+    width:120px;
+    height:auto;
+    display:block;
+    margin:0 auto 20px;
 }
 
 .login-card h2{
