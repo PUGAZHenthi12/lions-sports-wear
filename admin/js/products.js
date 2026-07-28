@@ -1,5 +1,7 @@
 import { db } from "./firebase-config.js";
 
+import { uploadImage } from "./cloudinary.js";
+
 import {
   collection,
   addDoc,
@@ -24,14 +26,22 @@ saveBtn.addEventListener("click", async () => {
     saveBtn.innerText = "Saving...";
 
     try {
+      
+         const imageFile = document.getElementById("productImage").files[0];
 
+let imageUrl = "";
+
+if (imageFile) {
+    imageUrl = await uploadImage(imageFile);
+}
+      
         await addDoc(collection(db, "products"), {
 
             name: productName,
             price: Number(price),
             category: category,
             description: description,
-            image: "",
+            image: imageUrl,
             createdAt: serverTimestamp()
 
         });
