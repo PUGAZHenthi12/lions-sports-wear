@@ -27,7 +27,7 @@ saveBtn.addEventListener("click", async () => {
 
     try {
       
-         const imageFile = document.getElementById("productImage").files[0];
+      const imageFile = document.getElementById("image").files[0];
 
 let imageUrl = "";
 
