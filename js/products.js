@@ -8,41 +8,33 @@ import {
 const productGrid = document.getElementById("productGrid");
 
 async function loadProducts() {
+    try {
 
-    productGrid.innerHTML = "";
+        const snapshot = await getDocs(collection(db, "products"));
 
-    const snapshot = await getDocs(collection(db, "products"));
+        productGrid.innerHTML = "";
 
-    snapshot.forEach((doc) => {
+        snapshot.forEach((doc) => {
 
-        const product = doc.data();
+            const product = doc.data();
 
-        productGrid.innerHTML += `
+            productGrid.innerHTML += `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="product-content">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <h4>₹${product.price}</h4>
+                        <a href="#contact" class="btn">Order Now</a>
+                    </div>
+                </div>
+            `;
+        });
 
-        <div class="product-card">
-
-            <img src="${product.image}" alt="${product.name}">
-
-            <div class="product-content">
-
-                <h3>${product.name}</h3>
-
-                <p>${product.description}</p>
-
-                <h4>₹${product.price}</h4>
-
-                <a href="#contact" class="btn">
-                    Order Now
-                </a>
-
-            </div>
-
-        </div>
-
-        `;
-
-    });
-
+    } catch (error) {
+        console.error(error);
+        productGrid.innerHTML = "<h3>Products failed to load.</h3>";
+    }
 }
 
 loadProducts();
