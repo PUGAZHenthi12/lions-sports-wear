@@ -35,14 +35,18 @@ saveBtn.addEventListener("click", async () => {
 
     try {
 
-        const imageFile = document.getElementById("image").files[0];
+        const imageFile1 = document.getElementById("image").files[0];
+const imageFile2 = document.getElementById("image2").files[0];
 
-        let imageUrl = "";
+let imageUrl1 = "";
+let imageUrl2 = "";
 
-        if (imageFile) {
-    console.log("Uploading image...");
-    imageUrl = await uploadImage(imageFile);
-    console.log("Uploaded:", imageUrl);
+if (imageFile1) {
+    imageUrl1 = await uploadImage(imageFile1);
+}
+
+if (imageFile2) {
+    imageUrl2 = await uploadImage(imageFile2);
 }
 
         // ---------- UPDATE ----------
@@ -55,9 +59,13 @@ saveBtn.addEventListener("click", async () => {
                 description
             };
 
-            if (imageUrl) {
-                updateData.image = imageUrl;
-            }
+            if (imageUrl1) {
+    updateData.image = imageUrl1;
+}
+
+if (imageUrl2) {
+    updateData.image2 = imageUrl2;
+}
 
             await updateDoc(
                 doc(db, "products", editProductId.value),
@@ -77,7 +85,8 @@ saveBtn.addEventListener("click", async () => {
                 price: Number(price),
                 category,
                 description,
-                image: imageUrl,
+                image: imageUrl1,
+                image2: imageUrl2,
                 createdAt: serverTimestamp()
 
             });
@@ -93,6 +102,7 @@ saveBtn.addEventListener("click", async () => {
         document.getElementById("description").value = "";
         document.getElementById("category").selectedIndex = 0;
         document.getElementById("image").value = "";
+        document.getElementById("image2").value = "";
 
         editProductId.value = "";
 
