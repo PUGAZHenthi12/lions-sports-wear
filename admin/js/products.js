@@ -8,9 +8,10 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  getDoc,
+  updateDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 const saveBtn = document.getElementById("saveBtn");
 
 saveBtn.addEventListener("click", async () => {
@@ -108,8 +109,22 @@ async function loadAdminProducts() {
 
 window.editProduct = async function(id){
 
-    alert("Edit Product - Coming in Step 2");
+    const snap = await getDoc(doc(db,"products",id));
 
+    if(!snap.exists()){
+        alert("Product not found");
+        return;
+    }
+
+    const p = snap.data();
+
+    document.getElementById("editProductId").value = id;
+    document.getElementById("productName").value = p.name;
+    document.getElementById("price").value = p.price;
+    document.getElementById("category").value = p.category;
+    document.getElementById("description").value = p.description;
+
+    saveBtn.innerText = "Update Product";
 }
 
 window.deleteProduct = async function(id){
