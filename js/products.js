@@ -152,27 +152,27 @@ function filterProducts() {
     const search = searchInput.value.toLowerCase();
     const category = categoryFilter.value;
 
+    let visibleCount = 0;
+
     document.querySelectorAll(".product-card").forEach((card) => {
 
         const name = card.querySelector("h3").innerText.toLowerCase();
-
-        const price = card.innerText.toLowerCase();
-
         const productCategory = card.dataset.category;
 
-        const searchMatch =
-            name.includes(search) || price.includes(search);
-
-        const categoryMatch =
-            category === "" || productCategory === category;
+        const searchMatch = name.includes(search);
+        const categoryMatch = category === "" || productCategory === category;
 
         if (searchMatch && categoryMatch) {
             card.style.display = "";
+            visibleCount++;
         } else {
             card.style.display = "none";
         }
 
     });
+
+    document.getElementById("noProducts").style.display =
+        visibleCount === 0 ? "block" : "none";
 
 }
 
