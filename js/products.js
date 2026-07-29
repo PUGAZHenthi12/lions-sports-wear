@@ -23,10 +23,28 @@ async function loadProducts() {
 
                 <div class="product-card">
 
-                    <img
-                        src="${product.image}"
-                        alt="${product.name}"
-                        class="product-image">
+                    <div class="product-slider">
+
+    <img
+        src="${product.image}"
+        class="product-image active">
+
+    ${
+        product.image2
+        ? `<img src="${product.image2}" class="product-image">`
+        : ""
+    }
+
+    ${
+        product.image2
+        ? `
+        <button class="prev-btn">◀</button>
+        <button class="next-btn">▶</button>
+        `
+        : ""
+    }
+
+</div>
 
                     <div class="product-content">
 
