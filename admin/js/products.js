@@ -40,8 +40,10 @@ saveBtn.addEventListener("click", async () => {
         let imageUrl = "";
 
         if (imageFile) {
-            imageUrl = await uploadImage(imageFile);
-        }
+    console.log("Uploading image...");
+    imageUrl = await uploadImage(imageFile);
+    console.log("Uploaded:", imageUrl);
+}
 
         // ---------- UPDATE ----------
         if (editProductId.value) {
