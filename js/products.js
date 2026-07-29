@@ -114,4 +114,34 @@ async function loadProducts() {
 
 }
 
+document.addEventListener("click",(e)=>{
+
+    if(e.target.classList.contains("next-btn") ||
+       e.target.classList.contains("prev-btn")){
+
+        const slider = e.target.parentElement;
+
+        const images = slider.querySelectorAll(".product-image");
+
+        let current = 0;
+
+        images.forEach((img,index)=>{
+            if(img.classList.contains("active")){
+                current=index;
+            }
+        });
+
+        images[current].classList.remove("active");
+
+        if(e.target.classList.contains("next-btn")){
+            current=(current+1)%images.length;
+        }else{
+            current=(current-1+images.length)%images.length;
+        }
+
+        images[current].classList.add("active");
+    }
+
+});
+
 loadProducts();
