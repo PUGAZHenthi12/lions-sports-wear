@@ -5,8 +5,10 @@ import { uploadImage } from "./cloudinary.js";
 import {
   collection,
   getDocs,
+  addDoc,
   deleteDoc,
-  doc
+  doc,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const saveBtn = document.getElementById("saveBtn");
