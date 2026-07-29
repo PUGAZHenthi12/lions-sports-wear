@@ -1139,3 +1139,42 @@ transform:rotate(360deg);
     cursor:pointer;
     font-weight:bold;
 }
+
+.product-slider{
+    position:relative;
+    overflow:hidden;
+}
+
+.product-slider img{
+    width:100%;
+    height:350px;
+    object-fit:contain;
+    display:none;
+    background:#111;
+}
+
+.product-slider img.active{
+    display:block;
+}
+
+.prev-btn,
+.next-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,.6);
+    color:#fff;
+    border:none;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.prev-btn{
+    left:10px;
+}
+
+.next-btn{
+    right:10px;
+}
