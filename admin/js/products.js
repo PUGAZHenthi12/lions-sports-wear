@@ -90,13 +90,23 @@ async function loadAdminProducts() {
 
                 ${p.category}<br><br>
 
-                <button onclick="deleteProduct('${doc.id}')">
-                    Delete
-                </button>
+                <button onclick="editProduct('${doc.id}')">
+    ✏️ Edit
+</button>
+
+<button onclick="deleteProduct('${doc.id}')">
+    🗑️ Delete
+</button>
             </div>
         `;
 
     });
+
+}
+
+window.editProduct = async function(id){
+
+    alert("Edit Product - Coming in Step 2");
 
 }
 
