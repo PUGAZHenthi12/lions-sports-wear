@@ -1,5 +1,4 @@
 import { db } from "./firebase-config.js";
-
 import { uploadImage } from "./cloudinary.js";
 
 import {
@@ -12,7 +11,12 @@ import {
   updateDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 const saveBtn = document.getElementById("saveBtn");
+const productList = document.getElementById("productList");
+const editProductId = document.getElementById("editProductId");
+
+// ---------------- SAVE / UPDATE ----------------
 
 saveBtn.addEventListener("click", async () => {
 
@@ -28,70 +32,89 @@ saveBtn.addEventListener("click", async () => {
 
     saveBtn.disabled = true;
     saveBtn.innerText = "Saving...";
-  
-    const editId = document.getElementById("editProductId").value;
-  
+
     try {
-      
-      const imageFile = document.getElementById("image").files[0];
 
-let imageUrl = "";
+        const imageFile = document.getElementById("image").files[0];
 
-if (imageFile) {
-    imageUrl = await uploadImage(imageFile);
-}
-      
-        if (editId) {
+        let imageUrl = "";
 
-    await updateDoc(doc(db, "products", editId), {
-        name: productName,
-        price: Number(price),
-        category: category,
-        description: description,
-        image: imageUrl || undefined
-    });
+        if (imageFile) {
+            imageUrl = await uploadImage(imageFile);
+        }
 
-    alert("Product Updated Successfully ✅");
+        // ---------- UPDATE ----------
+        if (editProductId.value) {
 
-    document.getElementById("editProductId").value = "";
-    saveBtn.innerText = "Save Product";
+            const updateData = {
+                name: productName,
+                price: Number(price),
+                category,
+                description
+            };
 
-} else {
+            if (imageUrl) {
+                updateData.image = imageUrl;
+            }
 
-    await addDoc(collection(db, "products"), {
-        name: productName,
-        price: Number(price),
-        category: category,
-        description: description,
-        image: imageUrl,
-        createdAt: serverTimestamp()
-    });
+            await updateDoc(
+                doc(db, "products", editProductId.value),
+                updateData
+            );
 
-    alert("Product Added Successfully ✅");
-}
+            alert("Product Updated Successfully ✅");
 
-        alert("Product Added Successfully ✅");
+        }
+
+        // ---------- ADD ----------
+        else {
+
+            await addDoc(collection(db, "products"), {
+
+                name: productName,
+                price: Number(price),
+                category,
+                description,
+                image: imageUrl,
+                createdAt: serverTimestamp()
+
+            });
+
+            alert("Product Added Successfully ✅");
+
+        }
+
+        // Reset Form
 
         document.getElementById("productName").value = "";
         document.getElementById("price").value = "";
         document.getElementById("description").value = "";
         document.getElementById("category").selectedIndex = 0;
+        document.getElementById("image").value = "";
 
-    } catch (error) {
+        editProductId.value = "";
 
-        console.error(error);
-        alert("Error: " + error.message);
+        saveBtn.innerText = "Save Product";
+        saveBtn.disabled = false;
+
+        loadAdminProducts();
 
     }
 
-    saveBtn.disabled = false;
-    saveBtn.innerText = "Save Product";
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+        saveBtn.disabled = false;
+        saveBtn.innerText = "Save Product";
+
+    }
 
 });
 
-// ---------------- Product List ----------------
-
-const productList = document.getElementById("productList");
+// ---------------- LOAD PRODUCTS ----------------
 
 async function loadAdminProducts() {
 
@@ -99,55 +122,64 @@ async function loadAdminProducts() {
 
     productList.innerHTML = "";
 
-    snapshot.forEach((doc) => {
+    snapshot.forEach((item) => {
 
-        const p = doc.data();
+        const p = item.data();
 
         productList.innerHTML += `
-            <div style="border:1px solid #444;padding:15px;margin:10px 0;border-radius:10px;">
-                <img src="${p.image}" width="120"><br><br>
 
-                <b>${p.name}</b><br>
+        <div style="border:1px solid #444;padding:15px;margin:10px 0;border-radius:10px;">
 
-                ₹${p.price}<br>
+            <img src="${p.image}" width="120"><br><br>
 
-                ${p.category}<br><br>
+            <b>${p.name}</b><br>
 
-                <button onclick="editProduct('${doc.id}')">
-    ✏️ Edit
-</button>
+            ₹${p.price}<br>
 
-<button onclick="deleteProduct('${doc.id}')">
-    🗑️ Delete
-</button>
-            </div>
+            ${p.category}<br><br>
+
+            <button onclick="editProduct('${item.id}')">
+                ✏️ Edit
+            </button>
+
+            <button onclick="deleteProduct('${item.id}')">
+                🗑 Delete
+            </button>
+
+        </div>
+
         `;
 
     });
 
 }
 
+// ---------------- EDIT ----------------
+
 window.editProduct = async function(id){
 
     const snap = await getDoc(doc(db,"products",id));
 
-    if(!snap.exists()){
-        alert("Product not found");
-        return;
-    }
+    if(!snap.exists()) return;
 
     const p = snap.data();
 
-    document.getElementById("editProductId").value = id;
+    editProductId.value = id;
+
     document.getElementById("productName").value = p.name;
     document.getElementById("price").value = p.price;
     document.getElementById("category").value = p.category;
     document.getElementById("description").value = p.description;
 
     saveBtn.innerText = "Update Product";
-}
+
+};
+
+// ---------------- DELETE ----------------
 
 window.deleteProduct = async function(id){
+
+    if(!confirm("Delete this product?")) return;
 
     await deleteDoc(doc(db,"products",id));
 
@@ -155,6 +187,6 @@ window.deleteProduct = async function(id){
 
     loadAdminProducts();
 
-}
+};
 
 loadAdminProducts();
