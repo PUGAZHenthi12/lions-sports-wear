@@ -28,7 +28,9 @@ saveBtn.addEventListener("click", async () => {
 
     saveBtn.disabled = true;
     saveBtn.innerText = "Saving...";
-
+  
+    const editId = document.getElementById("editProductId").value;
+  
     try {
       
       const imageFile = document.getElementById("image").files[0];
@@ -39,16 +41,34 @@ if (imageFile) {
     imageUrl = await uploadImage(imageFile);
 }
       
-        await addDoc(collection(db, "products"), {
+        if (editId) {
 
-            name: productName,
-            price: Number(price),
-            category: category,
-            description: description,
-            image: imageUrl,
-            createdAt: serverTimestamp()
+    await updateDoc(doc(db, "products", editId), {
+        name: productName,
+        price: Number(price),
+        category: category,
+        description: description,
+        image: imageUrl || undefined
+    });
 
-        });
+    alert("Product Updated Successfully ✅");
+
+    document.getElementById("editProductId").value = "";
+    saveBtn.innerText = "Save Product";
+
+} else {
+
+    await addDoc(collection(db, "products"), {
+        name: productName,
+        price: Number(price),
+        category: category,
+        description: description,
+        image: imageUrl,
+        createdAt: serverTimestamp()
+    });
+
+    alert("Product Added Successfully ✅");
+}
 
         alert("Product Added Successfully ✅");
 
