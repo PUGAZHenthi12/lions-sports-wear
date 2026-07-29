@@ -4,8 +4,9 @@ import { uploadImage } from "./cloudinary.js";
 
 import {
   collection,
-  addDoc,
-  serverTimestamp
+  getDocs,
+  deleteDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const saveBtn = document.getElementById("saveBtn");
@@ -64,3 +65,49 @@ if (imageFile) {
     saveBtn.innerText = "Save Product";
 
 });
+
+// ---------------- Product List ----------------
+
+const productList = document.getElementById("productList");
+
+async function loadAdminProducts() {
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    productList.innerHTML = "";
+
+    snapshot.forEach((doc) => {
+
+        const p = doc.data();
+
+        productList.innerHTML += `
+            <div style="border:1px solid #444;padding:15px;margin:10px 0;border-radius:10px;">
+                <img src="${p.image}" width="120"><br><br>
+
+                <b>${p.name}</b><br>
+
+                ₹${p.price}<br>
+
+                ${p.category}<br><br>
+
+                <button onclick="deleteProduct('${doc.id}')">
+                    Delete
+                </button>
+            </div>
+        `;
+
+    });
+
+}
+
+window.deleteProduct = async function(id){
+
+    await deleteDoc(doc(db,"products",id));
+
+    alert("Product Deleted");
+
+    loadAdminProducts();
+
+}
+
+loadAdminProducts();
