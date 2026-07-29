@@ -21,7 +21,7 @@ async function loadProducts() {
 
             productGrid.innerHTML += `
 
-                <div class="product-card">
+                <div class="product-card" data-category="${product.category}">
 
                     <div class="product-slider">
 
@@ -143,5 +143,41 @@ document.addEventListener("click",(e)=>{
     }
 
 });
+
+const searchInput = document.getElementById("searchProduct");
+const categoryFilter = document.getElementById("categoryFilter");
+
+function filterProducts() {
+
+    const search = searchInput.value.toLowerCase();
+    const category = categoryFilter.value;
+
+    document.querySelectorAll(".product-card").forEach((card) => {
+
+        const name = card.querySelector("h3").innerText.toLowerCase();
+
+        const price = card.innerText.toLowerCase();
+
+        const productCategory = card.dataset.category;
+
+        const searchMatch =
+            name.includes(search) || price.includes(search);
+
+        const categoryMatch =
+            category === "" || productCategory === category;
+
+        if (searchMatch && categoryMatch) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+}
+
+searchInput.addEventListener("input", filterProducts);
+
+categoryFilter.addEventListener("change", filterProducts);
 
 loadProducts();
