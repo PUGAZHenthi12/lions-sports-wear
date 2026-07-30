@@ -26,6 +26,8 @@ saveBtn.addEventListener("click", async () => {
     const price = document.getElementById("price").value;
     const category = document.getElementById("category").value;
     const description = document.getElementById("description").value.trim();
+    const originalPrice = document.getElementById("originalPrice").value;
+    const sizes = document.getElementById("sizes").value.trim();
 
     if (!productName || !price) {
         alert("Please fill Product Name and Price");
@@ -55,11 +57,16 @@ if (imageFile2) {
         if (editProductId.value) {
 
             const updateData = {
-                name: productName,
-                price: Number(price),
-                category,
-                description
-            };
+
+    name: productName,
+    originalPrice: Number(originalPrice) || Number(price),
+    price: Number(price),
+    sizes: sizes,
+
+    category,
+    description
+
+};
 
             if (imageUrl1) {
     updateData.image = imageUrl1;
@@ -83,15 +90,18 @@ if (imageUrl2) {
 
             await addDoc(collection(db, "products"), {
 
-                name: productName,
-                price: Number(price),
-                category,
-                description,
-                image: imageUrl1,
-                image2: imageUrl2,
-                createdAt: serverTimestamp()
+    name: productName,
+    originalPrice: Number(originalPrice) || Number(price),
+    price: Number(price),
+    sizes: sizes,
 
-            });
+    category,
+    description,
+    image: imageUrl,
+
+    createdAt: serverTimestamp()
+
+});
 
             alert("Product Added Successfully ✅");
 
