@@ -1342,3 +1342,8 @@ transform:rotate(360deg);
     }
 
 }
+
+.product-card .btn{
+    width:auto !important;
+    display:inline-block !important;
+}
