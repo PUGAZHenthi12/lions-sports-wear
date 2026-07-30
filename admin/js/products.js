@@ -134,9 +134,23 @@ async function loadAdminProducts() {
 
     productList.innerHTML = "";
 
-    snapshot.forEach((item) => {
+  // Dashboard Statistics
+
+document.getElementById("totalProducts").innerText = snapshot.size;
+
+const categorySet = new Set();
+
+let latestProduct = "-";
+
+    snapshot.forEach((item) => document.getElementById("totalCategories").innerText = categorySet.size;
+
+document.getElementById("latestProduct").innerText = latestProduct;
+      {
 
         const p = item.data();
+      categorySet.add(p.category);
+
+latestProduct = p.name;
 
         productList.innerHTML += `
 
