@@ -52,7 +52,37 @@ async function loadProducts() {
 
                         <p>${product.description}</p>
 
-                        <h4>₹${product.price}</h4>
+                        <div class="price-box">
+
+    <span class="old-price">
+        ₹${product.originalPrice || product.price}
+    </span>
+
+    <span class="new-price">
+        ₹${product.price}
+    </span>
+
+</div>
+
+${
+    product.originalPrice && product.originalPrice > product.price
+    ? `
+    <div class="save-price">
+        🔥 Save ₹${product.originalPrice - product.price}
+    </div>
+    `
+    : ""
+}
+
+${
+    product.sizes
+    ? `
+    <div class="product-sizes">
+        📏 Sizes: ${product.sizes}
+    </div>
+    `
+    : ""
+}
                         <div class="product-options">
 
 <select class="product-size">
