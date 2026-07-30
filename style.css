@@ -462,19 +462,18 @@ PRODUCTS
 }
 
 .product-card img{
-    width:100%;
-    height:260px;
-    object-fit:cover;
-    display:block;
+    height:350px;
+    object-fit:contain;
+    background:#111;
 }
 
 /* Product Details */
-.product-info{
+.product-content{
     padding:18px;
 }
 
-.product-info h3{
-    color:#fff;
+.product-content h3{
+    color:#FFD700;
     font-size:20px;
     margin-bottom:8px;
 }
