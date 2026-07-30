@@ -111,6 +111,8 @@ if (imageUrl2) {
 
         document.getElementById("productName").value = "";
         document.getElementById("price").value = "";
+        document.getElementById("originalPrice").value = "";
+        document.getElementById("sizes").value = "";
         document.getElementById("description").value = "";
         document.getElementById("category").selectedIndex = 0;
         document.getElementById("image").value = "";
