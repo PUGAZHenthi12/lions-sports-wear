@@ -15,6 +15,7 @@ import {
 const saveBtn = document.getElementById("saveBtn");
 const productList = document.getElementById("productList");
 const editProductId = document.getElementById("editProductId");
+const searchProduct = document.getElementById("searchProduct");
 
 // ---------------- SAVE / UPDATE ----------------
 
