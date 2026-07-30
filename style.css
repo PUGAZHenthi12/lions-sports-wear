@@ -1331,12 +1331,6 @@ transform:rotate(360deg);
     font-size:14px;
 }
 
-.product-card .btn{
-    width:100%;
-    display:block;
-    text-align:center;
-}
-
 @media (max-width:768px){
 
     .product-card{
