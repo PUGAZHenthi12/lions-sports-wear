@@ -214,16 +214,29 @@ window.deleteProduct = async function(id){
 };
 
 loadAdminProducts();
-searchProduct.addEventListener("input", () => {
+function filterAdminProducts() {
 
     const search = searchProduct.value.toLowerCase();
+    const category = adminCategoryFilter.value;
 
     document.querySelectorAll("#productList > div").forEach((card) => {
 
         const name = card.querySelector("b").innerText.toLowerCase();
 
-        card.style.display = name.includes(search) ? "" : "none";
+        const categoryText = card.innerText;
+
+        const searchMatch = name.includes(search);
+
+        const categoryMatch =
+            category === "" || categoryText.includes(category);
+
+        card.style.display =
+            (searchMatch && categoryMatch) ? "" : "none";
 
     });
 
-});
+}
+
+searchProduct.addEventListener("input", filterAdminProducts);
+
+adminCategoryFilter.addEventListener("change", filterAdminProducts);
