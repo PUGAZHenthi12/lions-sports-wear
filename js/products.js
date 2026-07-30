@@ -54,9 +54,28 @@ async function loadProducts() {
 
                         <h4>₹${product.price}</h4>
 
-                        <a href="#contact" class="btn">
-                            Order Now
-                        </a>
+                        <a
+class="btn whatsapp-order"
+
+href="https://wa.me/918778767806?text=${encodeURIComponent(
+`Hello Lion's Sports Wear,
+
+I want to order this product.
+
+Product : ${product.name}
+
+Category : ${product.category}
+
+Price : ₹${product.price}
+
+Please share more details.`
+)}"
+
+target="_blank">
+
+Order on WhatsApp
+
+</a>
 
                     </div>
 
