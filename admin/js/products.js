@@ -134,26 +134,20 @@ async function loadAdminProducts() {
 
     productList.innerHTML = "";
 
-  // Dashboard Statistics
+    // Dashboard Statistics
+    document.getElementById("totalProducts").innerText = snapshot.size;
 
-document.getElementById("totalProducts").innerText = snapshot.size;
+    const categorySet = new Set();
+    let latestProduct = "-";
 
-const categorySet = new Set();
-
-let latestProduct = "-";
-
-    snapshot.forEach((item) => document.getElementById("totalCategories").innerText = categorySet.size;
-
-document.getElementById("latestProduct").innerText = latestProduct;
-      {
+    snapshot.forEach((item) => {
 
         const p = item.data();
-      categorySet.add(p.category);
 
-latestProduct = p.name;
+        categorySet.add(p.category);
+        latestProduct = p.name;
 
         productList.innerHTML += `
-
         <div style="border:1px solid #444;padding:15px;margin:10px 0;border-radius:10px;">
 
             <img src="${p.image}" width="120"><br><br>
@@ -173,10 +167,12 @@ latestProduct = p.name;
             </button>
 
         </div>
-
         `;
 
     });
+
+    document.getElementById("totalCategories").innerText = categorySet.size;
+    document.getElementById("latestProduct").innerText = latestProduct;
 
 }
 
