@@ -1214,3 +1214,39 @@ transform:rotate(360deg);
 .product-toolbar input::placeholder{
     color:#aaa;
 }
+
+.price-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:10px 0;
+}
+
+.old-price{
+    color:#888;
+    text-decoration:line-through;
+    font-size:15px;
+}
+
+.new-price{
+    color:#ffd700;
+    font-size:24px;
+    font-weight:700;
+}
+
+.save-price{
+    display:inline-block;
+    background:#16a34a;
+    color:#fff;
+    padding:4px 10px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.product-sizes{
+    margin-top:8px;
+    color:#ddd;
+    font-size:14px;
+}
