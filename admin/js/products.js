@@ -213,3 +213,16 @@ window.deleteProduct = async function(id){
 };
 
 loadAdminProducts();
+searchProduct.addEventListener("input", () => {
+
+    const search = searchProduct.value.toLowerCase();
+
+    document.querySelectorAll("#productList > div").forEach((card) => {
+
+        const name = card.querySelector("b").innerText.toLowerCase();
+
+        card.style.display = name.includes(search) ? "" : "none";
+
+    });
+
+});
