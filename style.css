@@ -421,9 +421,10 @@ PRODUCTS
 
 .product-card img{
     width:100%;
-    height:350px;
+    height:420px;
     object-fit:contain;
     background:#111;
+    padding:15px;
 }
 
 .product-content{
