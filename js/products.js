@@ -53,6 +53,25 @@ async function loadProducts() {
                         <p>${product.description}</p>
 
                         <h4>₹${product.price}</h4>
+                        <div class="product-options">
+
+<select class="product-size">
+
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+<option>XXL</option>
+
+</select>
+
+<input
+type="number"
+class="product-qty"
+min="1"
+value="1">
+
+</div>
 
                         <a
 class="btn whatsapp-order"
@@ -73,7 +92,16 @@ Please share more details.`
 
 target="_blank">
 
+<button
+class="btn whatsapp-order"
+
+data-name="${product.name}"
+data-category="${product.category}"
+data-price="${product.price}">
+
 Order on WhatsApp
+
+</button>
 
 </a>
 
@@ -200,3 +228,38 @@ searchInput.addEventListener("input", filterProducts);
 categoryFilter.addEventListener("change", filterProducts);
 
 loadProducts();
+document.addEventListener("click", (e) => {
+
+    if (!e.target.classList.contains("whatsapp-order")) return;
+
+    const card = e.target.closest(".product-card");
+
+    const size = card.querySelector(".product-size").value;
+    const qty = card.querySelector(".product-qty").value;
+
+    const name = e.target.dataset.name;
+    const category = e.target.dataset.category;
+    const price = e.target.dataset.price;
+
+    const message = `Hello Lion's Sports Wear,
+
+I want to order this product.
+
+Product: ${name}
+
+Category: ${category}
+
+Size: ${size}
+
+Quantity: ${qty}
+
+Price: ₹${price}
+
+Please share more details.`;
+
+    window.open(
+        "https://wa.me/918778767806?text=" + encodeURIComponent(message),
+        "_blank"
+    );
+
+});
