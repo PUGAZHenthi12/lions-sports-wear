@@ -204,6 +204,8 @@ window.editProduct = async function(id){
     document.getElementById("price").value = p.price;
     document.getElementById("category").value = p.category;
     document.getElementById("description").value = p.description;
+    document.getElementById("originalPrice").value = p.originalPrice || "";
+    document.getElementById("sizes").value = p.sizes || "";
 
     saveBtn.innerText = "Update Product";
 
