@@ -13,18 +13,20 @@ export async function uploadImage(file) {
     formData.append("upload_preset", UPLOAD_PRESET);
 
     const response = await fetch(
-        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
-        {
-            method: "POST",
-            body: formData
-        }
-    );
-
-    if (!response.ok) {
-        throw new Error("Image upload failed");
+    `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+    {
+        method: "POST",
+        body: formData
     }
+);
 
-    const data = await response.json();
+const text = await response.text();
+alert(text);
 
-    return data.secure_url;
+if (!response.ok) {
+    throw new Error("Image upload failed");
+}
+
+const data = JSON.parse(text);
+return data.secure_url;
 }
