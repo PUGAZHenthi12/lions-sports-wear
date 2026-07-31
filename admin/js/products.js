@@ -1,3 +1,5 @@
+alert("NEW PRODUCTS.JS");
+
 import { db } from "./firebase-config.js";
 import { uploadImage } from "./cloudinary.js";
 
