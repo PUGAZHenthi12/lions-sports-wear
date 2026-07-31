@@ -130,14 +130,14 @@ if (imageUrl2) {
 
     catch (error) {
 
-        console.error(error);
+    alert(error.stack);
 
-        alert(error.message);
+    console.error(error);
 
-        saveBtn.disabled = false;
-        saveBtn.innerText = "Save Product";
+    saveBtn.disabled = false;
+    saveBtn.innerText = "Save Product";
 
-    }
+}
 
 });
 
