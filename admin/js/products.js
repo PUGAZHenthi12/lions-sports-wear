@@ -97,7 +97,8 @@ if (imageUrl2) {
 
     category,
     description,
-    image: imageUrl,
+    image: imageUrl1,
+    image2: imageUrl2,
 
     createdAt: serverTimestamp()
 
