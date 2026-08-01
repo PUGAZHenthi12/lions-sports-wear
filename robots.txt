@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pugazhenthi12.github.io/lions-sports-wear/sitemap.xml
