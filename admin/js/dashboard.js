@@ -67,3 +67,48 @@ snapshot.forEach((doc) => {
 }
 
 loadDashboard();
+
+async function loadCategoryChart() {
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    const categoryCount = {};
+
+    snapshot.forEach((doc) => {
+
+        const p = doc.data();
+
+        categoryCount[p.category] =
+            (categoryCount[p.category] || 0) + 1;
+
+    });
+
+    new Chart(document.getElementById("categoryChart"), {
+
+        type: "bar",
+
+        data: {
+
+            labels: Object.keys(categoryCount),
+
+            datasets: [{
+
+                label: "Products",
+
+                data: Object.values(categoryCount)
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true
+
+        }
+
+    });
+
+}
+
+loadCategoryChart();
