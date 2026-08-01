@@ -41,15 +41,25 @@ async function loadDashboard() {
     const categorySet = new Set();
     let latestProduct = "-";
 
-    snapshot.forEach((doc) => {
+    const recentProducts = document.getElementById("recentProducts");
 
-        const p = doc.data();
+snapshot.forEach((doc) => {
 
-        categorySet.add(p.category);
+    const p = doc.data();
 
-        latestProduct = p.name;
+    categorySet.add(p.category);
 
-    });
+    latestProduct = p.name;
+
+    recentProducts.innerHTML += `
+        <tr>
+            <td>${p.name}</td>
+            <td>${p.category}</td>
+            <td>₹${p.price}</td>
+        </tr>
+    `;
+
+});
 
     document.getElementById("totalCategories").innerText = categorySet.size;
     document.getElementById("latestProduct").innerText = latestProduct;
