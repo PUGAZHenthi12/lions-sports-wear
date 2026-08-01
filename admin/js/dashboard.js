@@ -1,4 +1,9 @@
-import { auth } from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 import {
   onAuthStateChanged,
@@ -24,3 +29,31 @@ logoutBtn.addEventListener("click", async (e) => {
     window.location.href = "index.html";
 
 });
+
+// Dashboard Analytics
+
+async function loadDashboard() {
+
+    const snapshot = await getDocs(collection(db, "products"));
+
+    document.getElementById("totalProducts").innerText = snapshot.size;
+
+    const categorySet = new Set();
+    let latestProduct = "-";
+
+    snapshot.forEach((doc) => {
+
+        const p = doc.data();
+
+        categorySet.add(p.category);
+
+        latestProduct = p.name;
+
+    });
+
+    document.getElementById("totalCategories").innerText = categorySet.size;
+    document.getElementById("latestProduct").innerText = latestProduct;
+
+}
+
+loadDashboard();
