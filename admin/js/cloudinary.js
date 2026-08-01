@@ -21,10 +21,9 @@ export async function uploadImage(file) {
 );
 
 const text = await response.text();
-alert(text);
 
 if (!response.ok) {
-    throw new Error("Image upload failed");
+    throw new Error(text);
 }
 
 const data = JSON.parse(text);
