@@ -27,8 +27,10 @@ async function loadGallery() {
             const data = doc.data();
 
             galleryGrid.innerHTML += `
-                <img src="${data.image}" alt="Gallery Image">
-            `;
+    <div class="gallery-item">
+        <img src="${data.image}" alt="Gallery Image">
+    </div>
+`;
         });
 
     } catch (error) {
