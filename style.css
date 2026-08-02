@@ -1354,3 +1354,29 @@ transform:rotate(360deg);
     border:2px solid #FFD700;
     background:#111;
 }
+
+/* ================= OFFER BANNER ================= */
+
+.offer-banner{
+    background: linear-gradient(135deg,#000,#1a1a1a);
+    border-top:2px solid #FFD700;
+    border-bottom:2px solid #FFD700;
+    padding:60px 20px;
+    text-align:center;
+}
+
+.offer-content h2{
+    color:#FFD700;
+    font-size:2rem;
+    margin-bottom:15px;
+}
+
+.offer-content p{
+    color:#fff;
+    font-size:1.1rem;
+    margin-bottom:25px;
+}
+
+.offer-content .btn{
+    padding:14px 35px;
+}
