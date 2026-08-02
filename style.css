@@ -1347,3 +1347,10 @@ transform:rotate(360deg);
     width:auto !important;
     display:inline-block !important;
 }
+
+.gallery-item{
+    overflow:hidden;
+    border-radius:18px;
+    border:2px solid #FFD700;
+    background:#111;
+}
