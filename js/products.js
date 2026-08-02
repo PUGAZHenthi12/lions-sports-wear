@@ -261,6 +261,8 @@ categoryFilter.addEventListener("change", filterProducts);
 
 async function loadOffer() {
 
+  console.log("Offer function started");
+
     try {
 
         const offerRef = doc(db, "offers", "homepage");
