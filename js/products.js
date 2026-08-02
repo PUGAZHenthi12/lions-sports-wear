@@ -2,7 +2,9 @@ import { db } from "./firebase-config.js";
 
 import {
   collection,
-  getDocs
+  getDocs,
+  doc,
+  getDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const productGrid = document.getElementById("productGrid");
@@ -257,7 +259,34 @@ searchInput.addEventListener("input", filterProducts);
 
 categoryFilter.addEventListener("change", filterProducts);
 
+async function loadOffer() {
+
+    try {
+
+        const offerRef = doc(db, "offers", "homepage");
+        const offerSnap = await getDoc(offerRef);
+
+        if (!offerSnap.exists()) return;
+
+        const offer = offerSnap.data();
+
+        if (!offer.active) return;
+
+        document.getElementById("offerBanner").style.display = "block";
+        document.getElementById("offerTitle").textContent = offer.title;
+        document.getElementById("offerSubtitle").textContent = offer.subtitle;
+        document.getElementById("offerBtn").textContent = offer.button;
+
+    } catch (error) {
+
+        console.error("Offer Banner Error:", error);
+
+    }
+
+}
+
 loadProducts();
+loadOffer();
 document.addEventListener("click", (e) => {
 
     if (!e.target.classList.contains("whatsapp-order")) return;
