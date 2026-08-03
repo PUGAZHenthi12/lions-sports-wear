@@ -82,3 +82,29 @@ document.getElementById("saveOffer").addEventListener("click", async () => {
     alert("Offer Banner Saved Successfully ✅");
 
 });
+
+// ===============================
+// Offer Image Preview
+// ===============================
+
+const offerImage = document.getElementById("offerImage");
+const offerPreview = document.getElementById("offerPreview");
+
+offerImage.addEventListener("change", () => {
+
+    const file = offerImage.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+        offerPreview.src = e.target.result;
+        offerPreview.style.display = "block";
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
