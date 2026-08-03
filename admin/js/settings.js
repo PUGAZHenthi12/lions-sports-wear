@@ -66,3 +66,19 @@ document.getElementById("saveSettings").addEventListener("click", async () => {
     alert("Settings Saved Successfully ✅");
 
 });
+
+// Save Offer
+document.getElementById("saveOffer").addEventListener("click", async () => {
+
+    await setDoc(offerRef, {
+
+        title: document.getElementById("offerTitle").value,
+        subtitle: document.getElementById("offerSubtitle").value,
+        button: document.getElementById("offerButton").value,
+        active: document.getElementById("offerActive").checked
+
+    });
+
+    alert("Offer Banner Saved Successfully ✅");
+
+});
