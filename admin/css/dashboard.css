@@ -205,3 +205,8 @@ button:hover{
     background:#fff;
 
 }
+
+input{
+    color:#ff0000 !important;
+    background:#000000 !important;
+}
