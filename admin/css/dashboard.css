@@ -231,3 +231,65 @@ input{
 .card textarea::placeholder{
     color:#aaa !important;
 }
+
+/* =========================
+   ADMIN FORM FIX
+========================= */
+
+.card label{
+    display:block;
+    margin-bottom:6px;
+    color:#FFD700;
+    font-weight:600;
+}
+
+.card input,
+.card textarea,
+.card select{
+
+    width:100% !important;
+    padding:14px !important;
+
+    background:#111 !important;
+    color:#fff !important;
+
+    border:2px solid #FFD700 !important;
+    border-radius:10px !important;
+
+    font-size:16px !important;
+    outline:none;
+
+    margin-bottom:18px !important;
+}
+
+.card input:focus,
+.card textarea:focus,
+.card select:focus{
+
+    border-color:#FFD700 !important;
+    box-shadow:0 0 10px rgba(255,215,0,.35);
+
+}
+
+.card button{
+
+    width:100%;
+    padding:14px;
+
+    background:#FFD700;
+    color:#000;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.card button:hover{
+
+    background:#fff;
+
+}
