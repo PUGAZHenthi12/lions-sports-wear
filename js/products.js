@@ -279,6 +279,13 @@ async function loadOffer() {
         document.getElementById("offerSubtitle").textContent = offer.subtitle;
         document.getElementById("offerBtn").textContent = offer.button;
 
+if (offer.image) {
+
+    document.getElementById("offerImage").src = offer.image;
+    document.getElementById("offerImage").style.display = "block";
+
+}
+      
     } catch (error) {
 
         console.error("Offer Banner Error:", error);
