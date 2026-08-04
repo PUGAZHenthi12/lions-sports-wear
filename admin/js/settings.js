@@ -71,14 +71,14 @@ document.getElementById("saveSettings").addEventListener("click", async () => {
 // Save Offer
 document.getElementById("saveOffer").addEventListener("click", async () => {
 
-const imageFile = document.getElementById("offerImage").files[0];
+    const imageFile = document.getElementById("offerImage").files[0];
 
-let imageUrl = "";
+    let imageUrl = "";
 
-if (imageFile) {
-    imageUrl = await uploadImage(imageFile);
-}
-    
+    if (imageFile) {
+        imageUrl = await uploadImage(imageFile);
+    }
+
     await setDoc(offerRef, {
 
         title: document.getElementById("offerTitle").value,
