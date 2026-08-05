@@ -1380,3 +1380,49 @@ transform:rotate(360deg);
 .offer-content .btn{
     padding:14px 35px;
 }
+
+/* ===============================
+   OFFER COUNTDOWN
+================================ */
+
+.offer-countdown{
+    margin:20px 0;
+    padding:14px 22px;
+    display:inline-block;
+    background:rgba(255,215,0,.12);
+    border:2px solid #FFD700;
+    border-radius:14px;
+    color:#FFD700;
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:.5px;
+    box-shadow:0 0 15px rgba(255,215,0,.25);
+    animation:pulseCountdown 1.5s infinite;
+}
+
+@keyframes pulseCountdown{
+
+    0%{
+        transform:scale(1);
+        box-shadow:0 0 10px rgba(255,215,0,.20);
+    }
+
+    50%{
+        transform:scale(1.03);
+        box-shadow:0 0 22px rgba(255,215,0,.40);
+    }
+
+    100%{
+        transform:scale(1);
+        box-shadow:0 0 10px rgba(255,215,0,.20);
+    }
+}
+
+@media(max-width:768px){
+
+    .offer-countdown{
+        font-size:15px;
+        padding:12px 16px;
+        line-height:1.5;
+    }
+}
