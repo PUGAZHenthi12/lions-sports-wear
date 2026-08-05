@@ -44,6 +44,8 @@ async function loadOffer() {
         document.getElementById("offerSubtitle").value = data.subtitle || "";
         document.getElementById("offerButton").value = data.button || "";
         document.getElementById("offerActive").checked = data.active || false;
+        document.getElementById("offerStart").value = data.start || "";
+        document.getElementById("offerEnd").value = data.end || "";
 
     }
 
@@ -81,13 +83,17 @@ document.getElementById("saveOffer").addEventListener("click", async () => {
 
     await setDoc(offerRef, {
 
-        title: document.getElementById("offerTitle").value,
-        subtitle: document.getElementById("offerSubtitle").value,
-        button: document.getElementById("offerButton").value,
-        active: document.getElementById("offerActive").checked,
-        image: imageUrl
+    title: document.getElementById("offerTitle").value,
+    subtitle: document.getElementById("offerSubtitle").value,
+    button: document.getElementById("offerButton").value,
 
-    });
+    start: document.getElementById("offerStart").value,
+    end: document.getElementById("offerEnd").value,
+
+    active: document.getElementById("offerActive").checked,
+    image: imageUrl
+
+});
 
     alert("Offer Banner Saved Successfully ✅");
 
