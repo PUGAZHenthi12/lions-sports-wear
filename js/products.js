@@ -279,6 +279,38 @@ async function loadOffer() {
         document.getElementById("offerSubtitle").textContent = offer.subtitle;
         document.getElementById("offerBtn").textContent = offer.button;
 
+      const countdown = document.getElementById("offerCountdown");
+
+function updateCountdown() {
+
+    if (!offer.end) {
+        countdown.innerHTML = "";
+        return;
+    }
+
+    const endDate = new Date(offer.end).getTime();
+    const now = new Date().getTime();
+
+    const distance = endDate - now;
+
+    if (distance <= 0) {
+        countdown.innerHTML = "⛔ Offer Ended";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdown.innerHTML =
+        `⏳ Offer Ends In: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
 if (offer.image) {
 
     document.getElementById("offerImage").src = offer.image;
