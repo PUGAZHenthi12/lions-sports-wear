@@ -272,6 +272,17 @@ async function loadOffer() {
 
         const offer = offerSnap.data();
 
+      const now = new Date().getTime();
+
+const startDate = offer.start ? new Date(offer.start).getTime() : 0;
+const endDate = offer.end ? new Date(offer.end).getTime() : Number.MAX_SAFE_INTEGER;
+
+// Start date வரலனா Banner காட்டாதே
+if (now < startDate) return;
+
+// End date முடிஞ்சா Banner காட்டாதே
+if (now > endDate) return;
+
         if (!offer.active) return;
 
         document.getElementById("offerBanner").style.display = "block";
@@ -294,9 +305,12 @@ function updateCountdown() {
     const distance = endDate - now;
 
     if (distance <= 0) {
-        countdown.innerHTML = "⛔ Offer Ended";
-        return;
-    }
+
+    document.getElementById("offerBanner").style.display = "none";
+
+    return;
+
+}
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
